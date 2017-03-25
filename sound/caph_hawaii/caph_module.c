@@ -111,7 +111,7 @@ static unsigned char *log_write_ptr;
 static unsigned char *log_buffer_head;
 static unsigned char *log_buffer_end;
 static int log_buffer_count;
-DEFINE_SPINLOCK(buf_splock);
+DEFINE_SPINLOCK(buf_lock);
 #endif
 
 /* wait queues */
@@ -331,9 +331,9 @@ BCMAudLOG_read(struct file *file, char __user * buf, size_t count,
 
 				}
 
-				spin_lock(&buf_splock);
+				spin_lock(&buf_lock);
 				log_buffer_count -= count;
-				spin_unlock(&buf_splock);
+				spin_unlock(&buf_lock);
 
 				if (log_read_ptr >= log_buffer_end)
 					log_read_ptr = log_buffer_head;
@@ -766,10 +766,10 @@ int logmsg_ready(struct snd_pcm_substream *substream, int log_point)
 					if (log_write_ptr >= log_buffer_end)
 						log_write_ptr = log_buffer_head;
 
-					spin_lock(&buf_splock);
+					spin_lock(&buf_lock);
 						log_buffer_count +=
 							runtime->dma_bytes / 2;
-					spin_unlock(&buf_splock);
+					spin_unlock(&buf_lock);
 
 					}
 #endif
