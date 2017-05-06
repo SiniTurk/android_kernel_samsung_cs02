@@ -50,5 +50,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)
 LOCAL_MODULE := gatord
 LOCAL_MODULE_TAGS := optional
 
+ifndef MODULE.TARGET.EXECUTABLES.gatord
 include $(BUILD_EXECUTABLE)
+endif
+
 endif
