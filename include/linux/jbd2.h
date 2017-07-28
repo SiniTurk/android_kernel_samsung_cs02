@@ -1083,13 +1083,13 @@ extern int jbd2_journal_set_features
 		   (journal_t *, unsigned long, unsigned long, unsigned long);
 extern void	jbd2_journal_clear_features
 		   (journal_t *, unsigned long, unsigned long, unsigned long);
-extern int jbd2_journal_load(journal_t *journal);
-extern int jbd2_journal_destroy(journal_t *);
-extern int jbd2_journal_recover(journal_t *journal);
-extern int jbd2_journal_wipe(journal_t *, int);
-extern int jbd2_journal_skip_recovery(journal_t *);
+extern int	   jbd2_journal_load       (journal_t *journal);
+extern int	   jbd2_journal_destroy    (journal_t *);
+extern int	   jbd2_journal_recover    (journal_t *journal);
+extern int	   jbd2_journal_wipe       (journal_t *, int);
+extern int	   jbd2_journal_skip_recovery	(journal_t *);
 extern void	   jbd2_journal_update_sb_errno(journal_t *);
-extern void	jbd2_journal_update_sb_log_tail(journal_t *, tid_t,
+extern void	   jbd2_journal_update_sb_log_tail	(journal_t *, tid_t,
 				unsigned long, int);
 extern void __jbd2_journal_abort_hard(journal_t *);
 extern void	jbd2_journal_abort(journal_t *, int);
