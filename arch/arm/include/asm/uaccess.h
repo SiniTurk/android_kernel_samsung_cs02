@@ -128,7 +128,7 @@ extern int __get_user_4(void *);
 		switch (sizeof(*(__p))) {				\
 		case 1:							\
 			__get_user_x(__r2, __p, __e, __l, 1);		\
-	       		break;						\
+			break;						\
 		case 2:							\
 			__get_user_x(__r2, __p, __e, __l, 2);		\
 			break;						\
