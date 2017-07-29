@@ -213,7 +213,6 @@ static int ping_init_sock(struct sock *sk)
 
 	group_info = get_current_groups();
 	count = group_info->ngroups;
-
 	for (i = 0; i < group_info->nblocks; i++) {
 		int cp_count = min_t(int, NGROUPS_PER_BLOCK, count);
 
