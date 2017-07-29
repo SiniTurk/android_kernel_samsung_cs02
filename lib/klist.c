@@ -185,7 +185,6 @@ static void klist_release(struct kref *kref)
 {
 	struct klist_waiter *waiter, *tmp;
 	struct klist_node *n = container_of(kref, struct klist_node, n_ref);
-	struct task_struct *process;
 
 	WARN_ON(!knode_dead(n));
 	list_del(&n->n_node);
@@ -194,12 +193,10 @@ static void klist_release(struct kref *kref)
 		if (waiter->node != n)
 			continue;
 
-		process = waiter->process;
-
 		list_del(&waiter->list);
 		waiter->woken = 1;
 		mb();
-		wake_up_process(process);
+		wake_up_process(waiter->process);
 	}
 	spin_unlock(&klist_remove_lock);
 	knode_set_klist(n, NULL);
