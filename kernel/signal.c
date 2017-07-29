@@ -1809,7 +1809,6 @@ static inline int may_ptrace_stop(void)
 	 * This is almost outdated, a task with the pending SIGKILL can't
 	 * block in TASK_TRACED. But PTRACE_EVENT_EXIT can be reported
 	 * after SIGKILL was already dequeued.
-
 	 */
 	if (unlikely(current->mm->core_state) &&
 	    unlikely(current->mm == current->parent->mm))
